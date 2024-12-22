@@ -44,12 +44,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             width: MediaQuery.of(context).size.width * 0.6,
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-          Text(
+          const Text(
             "Leaning Made Personal",
             textAlign: TextAlign.center,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 38),
           ),
-          Text(
+          const Text(
             "A Program designed just for YOU!",
             textAlign: TextAlign.center,
             style: TextStyle(fontWeight: FontWeight.w100, fontSize: 18),
@@ -58,16 +58,37 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           Stack(
             clipBehavior: Clip.none,
             children: [
-              Lottie.asset("assets/images/sparkl_shape_shift_lottie.json"),
-              CircleAvatar(
-                  radius: 120,
+              Container(height: 400, width: 900, child: Lottie.asset("assets/images/sparkl_shape_shift_lottie.json", fit: BoxFit.cover)),
+              Positioned(
+                right: 10,
+                bottom: 60,
+                child: CircleAvatar(
+                  radius: 140,
                   backgroundColor: Colors.yellow.shade500,
-                  child: CircleAvatar(
-                    radius: 116,
-                    backgroundColor: Colors.white,
-                  )),
+                  child: const CircleAvatar(
+                    radius: 135,
+                    backgroundColor: Colors.transparent,
+                  ),
+                ),
+              ),
             ],
           ),
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 12),
+            width: double.infinity,
+            child: TextButton(
+                style: ButtonStyle(
+                  padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 18)),
+                  backgroundColor: MaterialStateProperty.all(Colors.yellow.shade800), //Background Color
+                  elevation: MaterialStateProperty.all(3), //Defines Elevation
+                  shadowColor: MaterialStateProperty.all(Colors.yellow.shade800), //Defines shadowColor
+                ),
+                onPressed: () {},
+                child: const Text(
+                  "Next",
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                )),
+          )
         ],
       ),
     ));
