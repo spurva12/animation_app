@@ -37,6 +37,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           //  gradient: _gradient(),
           ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(height: MediaQuery.of(context).size.height * 0.09),
           Image.asset(
@@ -55,23 +57,31 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             style: TextStyle(fontWeight: FontWeight.w100, fontSize: 18),
           ),
           // VideoPlayer(_videoPlayerController),
-          Stack(
-            clipBehavior: Clip.none,
-            children: [
-              Container(height: 400, width: 900, child: Lottie.asset("assets/images/sparkl_shape_shift_lottie.json", fit: BoxFit.cover)),
-              Positioned(
-                right: 10,
-                bottom: 60,
-                child: CircleAvatar(
-                  radius: 140,
-                  backgroundColor: Colors.yellow.shade500,
-                  child: const CircleAvatar(
-                    radius: 135,
-                    backgroundColor: Colors.transparent,
+          Padding(
+            padding: EdgeInsets.all(8),
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Positioned(
+                  left: 16,
+                  right: 0,
+                  bottom: 65,
+                  child: CircleAvatar(
+                    radius: 140,
+                    backgroundColor: Colors.yellow.shade500,
+                    child: CircleAvatar(
+                      radius: 138,
+                      backgroundColor: Colors.white,
+                      child: CircleAvatar(
+                        radius: 137,
+                        backgroundColor: Colors.transparent,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ],
+                Container(height: 400, width: 900, child: Lottie.asset("assets/images/sparkl_shape_shift_lottie.json", fit: BoxFit.cover)),
+              ],
+            ),
           ),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 12),
