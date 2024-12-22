@@ -62,7 +62,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               CircleAvatar(
                   radius: 120,
                   backgroundColor: Colors.yellow.shade500,
-                  child: CircleAvatar(radius: 116, backgroundColor: Colors.white, child: )),
+                  child: CircleAvatar(
+                    radius: 116,
+                    backgroundColor: Colors.white,
+                  )),
             ],
           ),
         ],
