@@ -1,3 +1,4 @@
+import 'package:animation_app/fetures/pages/LiveClass/live_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -93,7 +94,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   elevation: MaterialStateProperty.all(3), //Defines Elevation
                   shadowColor: MaterialStateProperty.all(Colors.yellow.shade800), //Defines shadowColor
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => LiveScreen()));
+                },
                 child: const Text(
                   "Next",
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),

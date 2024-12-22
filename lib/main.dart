@@ -1,4 +1,4 @@
-import 'package:animation_app/fetures/pages/onboarding_screen/onboarding_screen.dart';
+import 'package:animation_app/fetures/pages/OnboardingScreen/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
