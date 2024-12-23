@@ -85,22 +85,24 @@ class _LiveScreenState extends State<LiveScreen> {
   }
 
   _stackCardWidget(){
-    return Swiper(
-      itemWidth: MediaQuery.of(context).size.width * 1,
-      itemHeight: MediaQuery.of(context).size.height * 0.4,
-      itemCount: 3,
-      loop: true,
-      duration: 500,
-      layout: SwiperLayout.STACK,
-      scrollDirection: Axis.vertical,
-      curve: Curves.easeInOut,
-      itemBuilder: (context, index) {
-        return SizedBox(
-            width: MediaQuery.of(context).size.width * 1,
-            height: MediaQuery.of(context).size.height * 0.4,
-            child: Image.asset("assets/images/stack_card.png"));
+    return Flexible(
+      child: Swiper(
+        itemWidth: MediaQuery.of(context).size.width * 1,
+        itemHeight: MediaQuery.of(context).size.height * 0.4,
+        itemCount: 3,
+        loop: true,
+        duration: 500,
+        layout: SwiperLayout.STACK,
+        scrollDirection: Axis.vertical,
+        curve: Curves.easeInOut,
+        itemBuilder: (context, index) {
+          return SizedBox(
+              width: MediaQuery.of(context).size.width * 1,
+              height: MediaQuery.of(context).size.height * 0.4,
+              child: Image.asset("assets/images/stack_card.png"));
 
-      },
+        },
+      ),
     );
   }
 }
