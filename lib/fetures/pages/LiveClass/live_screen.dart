@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_swiper_view/flutter_swiper_view.dart';
+import 'package:video_player/video_player.dart';
 
 class LiveScreen extends StatefulWidget {
   const LiveScreen({super.key});
@@ -9,25 +10,42 @@ class LiveScreen extends StatefulWidget {
 }
 
 class _LiveScreenState extends State<LiveScreen> {
-  double _position = 0.0; // Initial position
+  late VideoPlayerController _videoPlayerController1;
+  late VideoPlayerController _videoPlayerController2;
 
-  void _onHorizontalDragUpdate(DragUpdateDetails details) {
-    setState(() {
-      _position += details.primaryDelta!;
-    });
+  @override
+  void initState() {
+    super.initState();
+    _videoPlayerController1 =
+    VideoPlayerController.asset('assets/images/studentvideo.mp4')
+      ..initialize().then((_) {
+        setState(() {
+          _videoPlayerController1.play();
+        });
+      });
+  }
+  _videoPlay(){
+    _videoPlayerController1 =
+    VideoPlayerController.asset('assets/images/studentvideo.mp4')
+      ..initialize().then((_) {
+        setState(() {
+          _videoPlayerController1.play();
+        });
+      });
+    _videoPlayerController2 =
+    VideoPlayerController.asset('assets/images/studentvideo.mp4')
+      ..initialize().then((_) {
+        setState(() {
+          _videoPlayerController2.play();
+        });
+      });
   }
 
-  void _onHorizontalDragEnd(DragEndDetails details) {
-    // Add snapping effect if swipe is significant
-    setState(() {
-      if (_position > 100) {
-        _position = 200; // Snap to the right
-      } else if (_position < -100) {
-        _position = -200; // Snap to the left
-      } else {
-        _position = 0; // Snap back to the start
-      }
-    });
+  @override
+  void dispose() {
+    _videoPlayerController1.dispose();
+    _videoPlayerController2.dispose();
+    super.dispose();
   }
 
   @override
@@ -59,23 +77,36 @@ class _LiveScreenState extends State<LiveScreen> {
               textAlign: TextAlign.center,
               style: TextStyle(fontWeight: FontWeight.w100, fontSize: 18),
             ),
-      Swiper(
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            color: Colors.primaries[index % Colors.primaries.length],
-            child: Center(
-              child: Text(
-                'Swipe Item $index',
-                style: TextStyle(fontSize: 24, color: Colors.white),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ClipOval(
+                child: AspectRatio(
+                  aspectRatio:
+                  _videoPlayerController1.value.aspectRatio,
+                  child: VideoPlayer(_videoPlayerController1),
+                ),
               ),
             ),
-          );
-        },
-        itemCount: 5,
-        pagination: SwiperPagination(),
-        control: SwiperControl(),
-      ),
-    ),
+            Flexible(child: Swiper(
+              itemWidth: double.infinity,
+              itemHeight: 550,
+              itemCount: 4,
+              loop: true,
+              duration: 2000,
+              layout: SwiperLayout.STACK,
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context, index){
+                return Container(
+                  width: double.infinity,
+                  height: 550,
+                  decoration: BoxDecoration(
+                    image: const DecorationImage(image: AssetImage("assets/images/stack_card.png")),
+                    borderRadius: BorderRadius.circular(20)
+                  ),
+                );
+              },
+            ))
+
           ],
         ),
       ),

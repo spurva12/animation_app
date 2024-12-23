@@ -1,6 +1,9 @@
+import 'package:animation_app/fetures/Utils/btn_widget.dart';
 import 'package:animation_app/fetures/pages/LiveClass/live_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:video_player/video_player.dart';
+import 'widget/dotted_border_widget.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -10,111 +13,167 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-/*  late VideoPlayerController _videoPlayerController;
+  late VideoPlayerController _videoPlayerController;
 
   @override
   void initState() {
     super.initState();
-    _videoPlayerController = VideoPlayerController.asset('assets/images/studentvideo.mp4')
-      ..initialize().then((_) {
-        setState(() {});
-        _videoPlayerController.play();
-      });
+    _videoPlayerController =
+        VideoPlayerController.asset('assets/images/studentvideo.mp4')
+          ..initialize().then((_) {
+            setState(() {
+              _videoPlayerController.play();
+            });
+          });
   }
 
   @override
   void dispose() {
     _videoPlayerController.dispose();
     super.dispose();
-  }*/
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(color: Colors.orange.shade100
-          //  gradient: _gradient(),
-          ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(height: MediaQuery.of(context).size.height * 0.09),
-          Image.asset(
-            "assets/images/sparkl_logo.png",
-            width: MediaQuery.of(context).size.width * 0.6,
-          ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-          const Text(
-            "Leaning Made Personal",
-            textAlign: TextAlign.center,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 38),
-          ),
-          const Text(
-            "A Program designed just for YOU!",
-            textAlign: TextAlign.center,
-            style: TextStyle(fontWeight: FontWeight.w100, fontSize: 18),
-          ),
-          // VideoPlayer(_videoPlayerController),
-          Padding(
-            padding: EdgeInsets.all(8),
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Positioned(
-                  left: 16,
-                  right: 0,
-                  bottom: 65,
-                  child: CircleAvatar(
-                    radius: 140,
-                    backgroundColor: Colors.yellow.shade500,
-                    child: CircleAvatar(
-                      radius: 138,
-                      backgroundColor: Colors.white,
+        backgroundColor: Colors.orange.shade100,
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              Image.asset(
+                "assets/images/sparkl_logo.png",
+                width: MediaQuery.of(context).size.width * 0.6,
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              const Text(
+                "Leaning Made Personal",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 38),
+              ),
+              const Text(
+                "A Program designed just for YOU!",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.w100, fontSize: 18),
+              ),
+              Stack(
+                alignment: Alignment.center,
+                clipBehavior: Clip.none,
+                children: [
+                  Lottie.asset(
+                    'assets/images/sparkl_shape_shift_lottie.json',
+                    // Replace with your Lottie asset path
+                    width: 400, // Adjust size of the Lottie animation
+                    height: 400,
+                    fit: BoxFit.cover,
+                  ),
+                  if (_videoPlayerController.value.isInitialized)
+                    Container(
+                      width: 300, // Outer circle diameter
+                      height: 300,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.yellowAccent.shade700, // Border color
+                          width: 2, // Border thickness
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ClipOval(
+                          child: AspectRatio(
+                            aspectRatio:
+                                _videoPlayerController.value.aspectRatio,
+                            child: VideoPlayer(_videoPlayerController),
+                          ),
+                        ),
+                      ),
+                    )
+                  else
+                    ClipOval(
+                      child: Container(
+                        color: Colors.grey.shade300,
+                        child: const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      ),
+                    ),
+                  Positioned(
+                    left: 80,
+                    top: 29,
+                    child: DottedBorderCircleWidget(
                       child: CircleAvatar(
-                        radius: 137,
-                        backgroundColor: Colors.transparent,
+                          radius: 35,
+                          child: Image.asset(
+                            "assets/images/blue_book.png",
+                            width: 50,
+                            height: 50,
+                          )),
+                    ),
+                  ),
+                  const Positioned(
+                    right: 30,
+                    top: 90,
+                    child: DottedBorderRadiusWidget(
+                      text: "Holistic Well-Being",
+                    ),
+                  ),
+                  Positioned(
+                    left: 35,
+                    bottom: 170,
+                    child: DottedBorderCircleWidget(
+                      child: CircleAvatar(
+                          radius: 20,
+                          child: Image.asset(
+                            "assets/images/pre_read_selected.png",
+                            width: 30,
+                            height: 30,
+                          )),
+                    ),
+                  ),
+                  const Positioned(
+                    left: 30,
+                    bottom: 90,
+                    child: DottedBorderRadiusWidget(
+                      text: "Doubt Classification",
+                    ),
+                  ),
+                  const Positioned(
+                    right: 30,
+                    bottom: 110,
+                    child: DottedBorderRadiusWidget(
+                      text: "Personalised",
+                    ),
+                  ),
+                  Positioned(
+                    bottom: -40,
+                    right: 60,
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: DottedBorderCircleWidget(
+                        child: CircleAvatar(
+                            radius: 40,
+                            child: Image.asset(
+                              "assets/images/emoji.png",
+                              width: 30,
+                              height: 30,
+                            )),
                       ),
                     ),
                   ),
-                ),
-                Container(height: 400, width: 900, child: Lottie.asset("assets/images/sparkl_shape_shift_lottie.json", fit: BoxFit.cover)),
-              ],
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 12),
-            width: double.infinity,
-            child: TextButton(
-                style: ButtonStyle(
-                  padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 18)),
-                  backgroundColor: MaterialStateProperty.all(Colors.yellow.shade800), //Background Color
-                  elevation: MaterialStateProperty.all(3), //Defines Elevation
-                  shadowColor: MaterialStateProperty.all(Colors.yellow.shade800), //Defines shadowColor
-                ),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => LiveScreen()));
+                ],
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.08),
+              BtnWidget(
+                onPressed:  () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const LiveScreen()));
                 },
-                child: const Text(
-                  "Next",
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                )),
-          )
-        ],
-      ),
-    ));
-  }
-
-  RadialGradient _gradient() {
-    return RadialGradient(
-      center: Alignment.topCenter,
-      radius: 0.2,
-      colors: [
-        Colors.green,
-        Colors.yellow.shade50,
-      ],
-    );
+              )
+            ],
+          ),
+        ));
   }
 }
