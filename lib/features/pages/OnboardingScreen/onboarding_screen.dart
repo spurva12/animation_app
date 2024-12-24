@@ -1,5 +1,7 @@
-import 'package:animation_app/fetures/Utils/btn_widget.dart';
-import 'package:animation_app/fetures/pages/LiveClass/live_screen.dart';
+import 'package:animation_app/features/Utils/commonWidget/app_color.dart';
+import 'package:animation_app/features/Utils/commonWidget/app_string.dart';
+import 'package:animation_app/features/Utils/commonWidget/btn_widget.dart';
+import 'package:animation_app/features/pages/LiveClass/live_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:video_player/video_player.dart';
@@ -19,7 +21,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   void initState() {
     super.initState();
     _videoPlayerController =
-        VideoPlayerController.asset('assets/images/studentvideo.mp4')
+        VideoPlayerController.asset(AssetString.studentVideo)
           ..initialize().then((_) {
             setState(() {
               _videoPlayerController.play();
@@ -44,7 +46,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             children: [
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               Image.asset(
-                "assets/images/sparkl_logo.png",
+                AssetString.sparkLogo,
                 width: MediaQuery.of(context).size.width * 0.6,
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
@@ -63,8 +65,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 clipBehavior: Clip.none,
                 children: [
                   Lottie.asset(
-                    'assets/images/sparkl_shape_shift_lottie.json',
-                    // Replace with your Lottie asset path
+                    AssetString.sparkLottie,
                     width: 400, // Adjust size of the Lottie animation
                     height: 400,
                     fit: BoxFit.cover,
@@ -76,7 +77,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: Colors.yellowAccent.shade700, // Border color
+                          color: AppColor.primer,
                           width: 2, // Border thickness
                         ),
                       ),
@@ -107,7 +108,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       child: CircleAvatar(
                           radius: 35,
                           child: Image.asset(
-                            "assets/images/blue_book.png",
+                            AssetString.blueBook,
                             width: 50,
                             height: 50,
                           )),
@@ -127,7 +128,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       child: CircleAvatar(
                           radius: 20,
                           child: Image.asset(
-                            "assets/images/pre_read_selected.png",
+                            AssetString.preReadSelected,
                             width: 30,
                             height: 30,
                           )),
@@ -156,7 +157,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         child: CircleAvatar(
                             radius: 40,
                             child: Image.asset(
-                              "assets/images/emoji.png",
+                              AssetString.emoji,
                               width: 30,
                               height: 30,
                             )),
@@ -167,7 +168,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.08),
               BtnWidget(
-                onPressed:  () {
+                text: "Next",
+                onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const LiveScreen()));
                 },

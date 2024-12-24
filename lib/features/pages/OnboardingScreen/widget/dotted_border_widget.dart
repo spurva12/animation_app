@@ -1,3 +1,4 @@
+import 'package:animation_app/features/Utils/commonWidget/app_color.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +34,9 @@ class DottedBorderRadiusWidget extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.8),
             borderRadius: BorderRadius.circular(20),
-          ),child: Text(text)),
+          ),child: Text(text, textAlign: TextAlign.center,
+        style: TextStyle(
+            fontSize: 14, fontWeight: FontWeight.bold, color: AppColor.black))),
     );
   }
 }
