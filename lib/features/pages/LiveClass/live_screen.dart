@@ -1,6 +1,7 @@
 import 'package:animation_app/features/Utils/commonWidget/app_color.dart';
 import 'package:animation_app/features/Utils/commonWidget/app_string.dart';
 import 'package:animation_app/features/Utils/commonWidget/btn_widget.dart';
+import 'package:animation_app/features/pages/ChatClass/chat_screen.dart';
 import 'package:animation_app/features/pages/OnboardingScreen/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
@@ -109,7 +110,6 @@ class _LiveScreenState extends State<LiveScreen> {
                       totalSteps: 3,
                       currentStep: 2,
                       width: 100,
-                      //   roundedCap: (_, isSelected) => isSelected,
                       child: IconButton(
                           onPressed: () {
                             Navigator.pushReplacement(
@@ -132,7 +132,8 @@ class _LiveScreenState extends State<LiveScreen> {
                 child: BtnWidget(
                   text: "Next",
                   onPressed: () {
-
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const ChatScreen()));
                   },
                 ),
               ),
@@ -179,16 +180,19 @@ class _LiveScreenState extends State<LiveScreen> {
           ),
           Positioned(
             bottom: 80,
-            child: Container(
-              width: 80, // Outer circle diameter
-              height: 80,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-              ),
-              child: ClipOval(
-                child: AspectRatio(
-                  aspectRatio: _videoPlayerController2.value.aspectRatio,
-                  child: VideoPlayer(_videoPlayerController2),
+            child: Hero(
+              tag: "girl",
+              child: Container(
+                width: 80, // Outer circle diameter
+                height: 80,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                child: ClipOval(
+                  child: AspectRatio(
+                    aspectRatio: _videoPlayerController2.value.aspectRatio,
+                    child: VideoPlayer(_videoPlayerController2),
+                  ),
                 ),
               ),
             ),

@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-    //  home: OnboardingScreen(),
-      home: PageBuilderExample(),
+      home: OnboardingScreen(),
+   //   home: PageBuilderExample(),
     );
   }
 }
