@@ -53,93 +53,103 @@ class _LiveScreenState extends State<LiveScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.orange.shade100,
-      body: Column(
-        children: [
-          SizedBox(height: MediaQuery
-              .of(context)
-              .size
-              .height * 0.09),
-          Image.asset(
-            AssetString.sparkLogo,
-            width: MediaQuery
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: MediaQuery
                 .of(context)
                 .size
-                .width * 0.3,
-          ),
-          SizedBox(height: MediaQuery
-              .of(context)
-              .size
-              .height * 0.02),
-          const Text(
-            "1-on-1 Live Classed",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 38),
-          ),
-          const Text(
-            "Leaning customized for every student",
-            textAlign: TextAlign.center,
-            style: TextStyle(fontWeight: FontWeight.w100, fontSize: 18),
-          ),
-          SizedBox(height: MediaQuery
-              .of(context)
-              .size
-              .height * 0.02),
-          Container(
-            width: 200,
-            height: 100,
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-                borderRadius:
-                BorderRadius.circular(15) // Adjust the radius as needed
+                .height * 0.05),
+            Image.asset(
+              AssetString.sparkLogo,
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width * 0.3,
             ),
-            child: AspectRatio(
-              aspectRatio: _videoPlayerController1.value.aspectRatio,
-              child: VideoPlayer(_videoPlayerController1),
+            SizedBox(height: MediaQuery
+                .of(context)
+                .size
+                .height * 0.05),
+            const Text(
+              "1-on-1 Live Classed",
+              style:TextStyle(fontWeight: FontWeight.w500, fontSize: 36),
             ),
-          ),
-          _stackCardWidget(),
-          Row(
-            children: [
-              Flexible(
-                flex: 2,
+            const Text(
+              "Leaning customized for every student",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16,color: Colors.black54),
+            ),
+            SizedBox(height: MediaQuery
+                .of(context)
+                .size
+                .height * 0.01),
+            Center(
+              child: Hero(
+                tag: "teacher",
                 child: Container(
-                  width: 60,
-                  height: 60,
-                  child: CircularStepProgressIndicator(
-                    selectedColor: AppColor.primer,
-                    unselectedColor: AppColor.grey,
-                      totalSteps: 3,
-                      currentStep: 2,
-                      width: 100,
-                      child: IconButton(
-                          onPressed: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => OnboardingScreen(),
-                              ),
-                            );
-                          }, icon: Icon(Icons.arrow_back_outlined)),
+                  width: 160,
+                  height: 90,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                      borderRadius:
+                      BorderRadius.circular(15) // Adjust the radius as needed
+                  ),
+                  child: AspectRatio(
+                    aspectRatio: _videoPlayerController1.value.aspectRatio,
+                    child: VideoPlayer(_videoPlayerController1),
                   ),
                 ),
               ),
-
-              SizedBox(width: MediaQuery
-                  .of(context)
-                  .size
-                  .width * 0.02,),
-              Flexible(
-                flex: 8,
-                child: BtnWidget(
-                  text: "Next",
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const ChatScreen()));
-                  },
+            ),
+            _stackCardWidget(),
+            Row(
+              children: [
+                Flexible(
+                  flex: 2,
+                  child: Container(
+                    width: 60,
+                    height: 60,
+                    child: CircularStepProgressIndicator(
+                      selectedColor: AppColor.primer,
+                      unselectedColor: AppColor.grey,
+                        totalSteps: 3,
+                        currentStep: 2,
+                        width: 100,
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => OnboardingScreen(),
+                                ),
+                              );
+                            }, icon: Icon(Icons.arrow_back_outlined)),
+                    ),
+                  ),
                 ),
-              ),
-            ],
-          )
-        ],
+
+                SizedBox(width: MediaQuery
+                    .of(context)
+                    .size
+                    .width * 0.02,),
+                Flexible(
+                  flex: 8,
+                  child: BtnWidget(
+                    text: "Next",
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const ChatScreen()));
+                    },
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
@@ -179,7 +189,7 @@ class _LiveScreenState extends State<LiveScreen> {
             },
           ),
           Positioned(
-            bottom: 80,
+            bottom: 40,
             child: Hero(
               tag: "girl",
               child: Container(

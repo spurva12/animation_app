@@ -54,38 +54,50 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.orange.shade100,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: MediaQuery
-              .of(context)
-              .size
-              .height * 0.09),
-          Image.asset(
-            AssetString.sparkLogo,
-            width: MediaQuery
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: MediaQuery
                 .of(context)
                 .size
-                .width * 0.3,
-          ),
-          SizedBox(height: MediaQuery
-              .of(context)
-              .size
-              .height * 0.02),
-          const Text(
-            "Doubt Resolution with Teachers",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 38),
-          ),
-          SizedBox(height: MediaQuery
-              .of(context)
-              .size
-              .height * 0.02),
-          _receivedChatWidget(text: "Do you want to go over how to apply the quadratic formula",),
-          _sendChatWidget(text : "Yes, I'm coonfused about when to use it."),
-          _receivedChatWidget(text: "Do you want to go over how to apply the quadratic formula",),
-          _btnWidget(),
-        ],
+                .height * 0.05),
+            Image.asset(
+              AssetString.sparkLogo,
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width * 0.3,
+            ),
+            SizedBox(height: MediaQuery
+                .of(context)
+                .size
+                .height * 0.05),
+            const Text(
+              "Doubt Resolution with Teachers",
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 36),
+            ),
+            SizedBox(height: MediaQuery
+                .of(context)
+                .size
+                .height * 0.05),
+            _receivedChatWidget(text: "Do you want to go over how to apply the quadratic formula",),
+            SizedBox(height: MediaQuery
+                .of(context)
+                .size
+                .height * 0.02),
+            _sendChatWidget(text : "Yes, I'm coonfused about when to use it."),
+            SizedBox(height: MediaQuery
+                .of(context)
+                .size
+                .height * 0.02),
+            _receivedChatWidget(text: "Do you want to go over how to apply the quadratic formula",),
+            Spacer(),
+            _btnWidget(),
+          ],
+        ),
       ),
     );
   }
@@ -106,16 +118,19 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
         Positioned(
           top: -15,
-          child: Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-            ),
-            child: ClipOval(
-              child: AspectRatio(
-                aspectRatio: _videoPlayerController1.value.aspectRatio,
-                child: VideoPlayer(_videoPlayerController1),
+          child: Hero(
+            tag: "teacher",
+            child: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+              ),
+              child: ClipOval(
+                child: AspectRatio(
+                  aspectRatio: _videoPlayerController1.value.aspectRatio,
+                  child: VideoPlayer(_videoPlayerController1),
+                ),
               ),
             ),
           ),
@@ -141,16 +156,19 @@ class _ChatScreenState extends State<ChatScreen> {
           Positioned(
             right: 0,
             top: -15,
-            child: Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-              ),
-              child: ClipOval(
-                child: AspectRatio(
-                  aspectRatio: _videoPlayerController2.value.aspectRatio,
-                  child: VideoPlayer(_videoPlayerController2),
+            child: Hero(
+              tag: "girl",
+              child: Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                child: ClipOval(
+                  child: AspectRatio(
+                    aspectRatio: _videoPlayerController2.value.aspectRatio,
+                    child: VideoPlayer(_videoPlayerController2),
+                  ),
                 ),
               ),
             ),
